@@ -20,6 +20,8 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 
+import build_trends
+
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "data"
 SHARD = 500
@@ -31,13 +33,14 @@ def dump(path, obj):
 
 
 def stamp_assets():
-    """Append a content hash to app.js / style.css references so browsers drop stale copies."""
-    index = ROOT / "docs" / "index.html"
-    html = index.read_text()
-    for name in ("app.js", "style.css"):
-        digest = hashlib.sha1((ROOT / "docs" / name).read_bytes()).hexdigest()[:10]
-        html = re.sub(rf'"{re.escape(name)}(\?v=[0-9a-f]*)?"', f'"{name}?v={digest}"', html)
-    index.write_text(html)
+    """Append a content hash to JS / CSS references so browsers drop stale copies."""
+    for page in ("index.html", "trends.html"):
+        path = ROOT / "docs" / page
+        html = path.read_text()
+        for name in ("app.js", "trends.js", "style.css"):
+            digest = hashlib.sha1((ROOT / "docs" / name).read_bytes()).hexdigest()[:10]
+            html = re.sub(rf'"{re.escape(name)}(\?v=[0-9a-f]*)?"', f'"{name}?v={digest}"', html)
+        path.write_text(html)
 
 
 def main():
@@ -99,6 +102,7 @@ def main():
         tags=tags,
         shardSize=SHARD,
     ))
+    build_trends.main()
     stamp_assets()
     size = sum(f.stat().st_size for f in OUT.rglob("*.json")) / 1e6
     print(f"{len(rows)} papers, {len(tags)} tags, {len(abstracts) // SHARD + 1} abstract shards, {size:.1f} MB total")

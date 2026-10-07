@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ICLR 2027 投稿规律</title>
+  <link rel="stylesheet" href="style.css?v=bcfb548c5a">
+</head>
+<body class="trends-page">
+  <header class="topbar">
+    <div class="brand">
+      <h1>ICLR 2027 投稿规律</h1>
+      <div class="muted">基于有效投稿的标题、作者关键词、摘要和自动标签</div>
+    </div>
+    <nav class="nav">
+      <a href="index.html">浏览论文</a>
+      <a href="trends.html" class="current">投稿规律</a>
+    </nav>
+  </header>
+
+  <main class="trends">
+    <p class="lede muted" id="lede">加载数据中…</p>
+    <section class="stats" id="stats"></section>
+
+    <h2>十条规律</h2>
+    <ol class="findings" id="findings"></ol>
+
+    <h2>证据</h2>
+    <p class="muted small">图中带标签的条目可以点击，直接跳到对应标签的论文列表。</p>
+    <div class="charts">
+      <section class="chart">
+        <h3>各大类覆盖的投稿比例</h3>
+        <div id="c-groups"></div>
+        <p class="caption">横轴：占有效投稿的百分比；一篇论文可属于多个大类。</p>
+      </section>
+      <section class="chart">
+        <h3>作者关键词 Top 20（合并同义写法后）</h3>
+        <div id="c-keywords"></div>
+        <p class="caption">横轴：使用该关键词的论文数；已合并单复数和常见同义写法，如 LLM / LLMs / large language models。</p>
+      </section>
+      <section class="chart">
+        <h3>强化学习子方向：LLM 相关 vs 经典 RL</h3>
+        <div class="legend"><span class="key accent"></span>LLM / 智能体 RL<span class="key"></span>经典 RL 子方向</div>
+        <div id="c-rl"></div>
+        <p class="caption" id="cap-rl"></p>
+      </section>
+      <section class="chart">
+        <h3>LLM 智能体子方向</h3>
+        <div id="c-agents"></div>
+        <p class="caption">横轴：论文数（规则标签，子方向可重叠）。</p>
+      </section>
+      <section class="chart">
+        <h3>提及各基座模型的论文数</h3>
+        <div id="c-models"></div>
+        <p class="caption">横轴：标题、关键词或摘要中提到该模型系列的论文数（正则匹配；提及不等于使用）。</p>
+      </section>
+      <section class="chart">
+        <h3>提及各 benchmark 的论文数（Top 12）</h3>
+        <div id="c-bench"></div>
+        <p class="caption">横轴：标题、关键词或摘要中提到该 benchmark 的论文数，只统计了 16 个常见 benchmark。</p>
+      </section>
+      <section class="chart wide">
+        <h3>每日新建投稿条目数</h3>
+        <div id="c-timeline"></div>
+        <p class="caption" id="cap-timeline"></p>
+      </section>
+    </div>
+
+    <h2>值得关注的具体方向</h2>
+    <table class="hot">
+      <thead><tr><th>方向</th><th class="num">论文数</th><th>常见搭配</th></tr></thead>
+      <tbody id="hot"></tbody>
+    </table>
+
+    <section class="notes">
+      <h3>口径说明</h3>
+      <ul>
+        <li>细分标签由关键词规则自动生成（规则见 <a href="https://github.com/yzc-666/iclr2027-explorer/blob/HEAD/scripts/taxonomy.py" target="_blank" rel="noopener">scripts/taxonomy.py</a>），宽泛标签有噪声；“同现”指同一篇论文同时带两个标签。</li>
+        <li>只有本届数据，没有和往年对比，“升温”“成形”指本届的占比和共现，不代表增长。</li>
+        <li>基座模型和 benchmark 是提及数，不等于实际使用。</li>
+        <li>投稿时间用的是 OpenReview 条目的首次创建时间，不是最终 PDF 的提交时间。</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="muted">数据来自 <a href="https://openreview.net/group?id=ICLR.cc/2027/Conference" target="_blank" rel="noopener">OpenReview</a>，<span id="built"></span>。</footer>
+  <script src="trends.js?v=45ce27e861"></script>
+</body>
+</html>
