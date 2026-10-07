@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ICLR 2027 投稿分类浏览</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>ICLR 2027 投稿分类浏览</h1>
+      <div id="stats" class="muted">加载数据中…</div>
+    </div>
+    <div class="searchbox">
+      <input id="q" type="search" placeholder='搜索标题 / 关键词，空格分隔为 AND，可用引号："on-policy distillation"' autocomplete="off">
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside id="sidebar">
+      <div class="filters">
+        <div class="frow">
+          <span class="flabel">状态</span>
+          <label><input type="checkbox" name="status" value="active" checked> 有效投稿</label>
+          <label><input type="checkbox" name="status" value="withdrawn"> 撤稿</label>
+          <label><input type="checkbox" name="status" value="desk_rejected"> Desk Reject</label>
+        </div>
+        <div class="frow">
+          <span class="flabel">领域</span>
+          <select id="area"><option value="">全部 primary area</option></select>
+        </div>
+        <div class="frow">
+          <span class="flabel">多选</span>
+          <select id="mode">
+            <option value="and">同时满足所选标签（AND）</option>
+            <option value="or">满足任一所选标签（OR）</option>
+          </select>
+        </div>
+        <input id="tagfilter" type="search" placeholder="查找标签，如 OPD / loop / SAE" autocomplete="off">
+        <div class="frow small">
+          <button id="expand-all" class="link">全部展开</button>
+          <button id="collapse-all" class="link">全部收起</button>
+        </div>
+      </div>
+      <nav id="groups"></nav>
+    </aside>
+
+    <main>
+      <div id="active-filters"></div>
+      <div class="toolbar">
+        <span id="count"></span>
+        <span class="spacer"></span>
+        <label class="muted">排序
+          <select id="sort">
+            <option value="num">投稿编号 ↑</option>
+            <option value="num_desc">投稿编号 ↓</option>
+            <option value="title">标题 A→Z</option>
+            <option value="rel">搜索相关度</option>
+          </select>
+        </label>
+        <button id="export">导出 CSV</button>
+      </div>
+      <section id="overview"></section>
+      <ol id="list"></ol>
+      <div id="sentinel" class="muted"></div>
+    </main>
+  </div>
+
+  <footer class="muted">
+    数据来自 <a href="https://openreview.net/group?id=ICLR.cc/2027/Conference" target="_blank" rel="noopener">OpenReview</a>，
+    <span id="built"></span>。一级分类为作者自选的 primary area；细分标签由关键词规则自动生成（匹配标题、关键词与摘要），会有误判，
+    规则见 <a href="https://github.com/yzc-666/iclr2027-explorer/blob/HEAD/scripts/taxonomy.py" target="_blank" rel="noopener">scripts/taxonomy.py</a>。
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
