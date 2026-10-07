@@ -3,7 +3,7 @@
   "id": "llm",
   "zh": "LLM 训练与推理",
   "en": "LLM Training & Reasoning",
-  "count": 22421,
+  "count": 22115,
   "tags": [
    {
     "id": "llm_all",
@@ -82,12 +82,6 @@
     "zh": "代码生成",
     "en": "Code Generation",
     "count": 1125
-   },
-   {
-    "id": "self_improve",
-    "zh": "自我改进 / 自进化 / Self-Play",
-    "en": "Self-Improvement / Self-Evolution / Self-Play",
-    "count": 1191
    },
    {
     "id": "icl",
@@ -173,13 +167,13 @@
   "id": "agents",
   "zh": "智能体",
   "en": "Agents",
-  "count": 7825,
+  "count": 7984,
   "tags": [
    {
     "id": "llm_agents",
     "zh": "LLM 智能体（全部）",
     "en": "LLM Agents (all)",
-    "count": 6775
+    "count": 7035
    },
    {
     "id": "tool_use",
@@ -234,12 +228,68 @@
     "zh": "智能体评测 / Benchmark",
     "en": "Agent Benchmarks & Evaluation",
     "count": 1524
+   }
+  ]
+ },
+ {
+  "id": "autoresearch",
+  "zh": "自动化科研与自我改进",
+  "en": "Auto Research & Self-Improvement (RSI)",
+  "count": 2060,
+  "tags": [
+   {
+    "id": "autoresearch_all",
+    "zh": "自动化科研（全部）",
+    "en": "Automated Research (all)",
+    "count": 683
    },
    {
-    "id": "science_agents",
-    "zh": "AI 科学家 / 自动化研究",
-    "en": "AI Scientist & Automated Research",
-    "count": 261
+    "id": "ai_scientist",
+    "zh": "AutoResearch / AI Scientist（端到端自动科研）",
+    "en": "AutoResearch / AI Scientist",
+    "count": 368
+   },
+   {
+    "id": "research_ideation",
+    "zh": "科研构思 / 假设生成 / 新颖性评估",
+    "en": "Research Ideation, Hypotheses & Novelty",
+    "count": 86
+   },
+   {
+    "id": "paper_review",
+    "zh": "论文写作 / 审稿（AI Reviewer）",
+    "en": "Paper Writing & Peer Review",
+    "count": 94
+   },
+   {
+    "id": "ml_rd",
+    "zh": "ML 工程 / AI 研发自动化 / 论文复现",
+    "en": "ML Engineering, AI R&D Automation & Replication",
+    "count": 76
+   },
+   {
+    "id": "algo_discovery",
+    "zh": "LLM 驱动的算法 / 启发式 / 数学发现（AlphaEvolve 类）",
+    "en": "LLM-driven Algorithm & Math Discovery (AlphaEvolve-style)",
+    "count": 167
+   },
+   {
+    "id": "rsi",
+    "zh": "递归自我改进（RSI）",
+    "en": "Recursive Self-Improvement (RSI)",
+    "count": 256
+   },
+   {
+    "id": "self_evolving",
+    "zh": "自进化智能体（经验 / 技能 / 记忆进化）",
+    "en": "Self-Evolving Agents (experience, skills, memory)",
+    "count": 852
+   },
+   {
+    "id": "self_improve",
+    "zh": "自我改进（全部：RSI / 自进化 / Self-Play / 自纠错）",
+    "en": "Self-Improvement (all)",
+    "count": 1454
    }
   ]
  },

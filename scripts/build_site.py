@@ -2,6 +2,9 @@
 
     python3 scripts/build_site.py
 
+Re-run after editing docs/app.js or docs/style.css too: it stamps their
+content hashes into docs/index.html.
+
 Outputs
   docs/data/meta.json      taxonomy, areas, statuses, counts
   docs/data/papers.json    one row per paper:
@@ -9,7 +12,9 @@ Outputs
   docs/data/abs/<k>.json   abstracts for rows k*SHARD .. (k+1)*SHARD-1, loaded lazily
 """
 
+import hashlib
 import json
+import re
 import shutil
 from collections import Counter
 from datetime import date
@@ -23,6 +28,16 @@ STATUSES = ["active", "withdrawn", "desk_rejected"]
 
 def dump(path, obj):
     path.write_text(json.dumps(obj, ensure_ascii=False, separators=(",", ":")))
+
+
+def stamp_assets():
+    """Append a content hash to app.js / style.css references so browsers drop stale copies."""
+    index = ROOT / "docs" / "index.html"
+    html = index.read_text()
+    for name in ("app.js", "style.css"):
+        digest = hashlib.sha1((ROOT / "docs" / name).read_bytes()).hexdigest()[:10]
+        html = re.sub(rf'"{re.escape(name)}(\?v=[0-9a-f]*)?"', f'"{name}?v={digest}"', html)
+    index.write_text(html)
 
 
 def main():
@@ -66,8 +81,10 @@ def main():
     for k in range(0, len(abstracts), SHARD):
         dump(OUT / "abs" / f"{k // SHARD}.json", abstracts[k:k + SHARD])
 
+    version = hashlib.sha1((OUT / "papers.json").read_bytes()).hexdigest()[:10]
     status_counts = Counter(p["status"] for p in papers)
     dump(OUT / "meta.json", dict(
+        version=version,
         built=date.today().isoformat(),
         total=len(papers),
         statuses=STATUSES,
@@ -78,6 +95,7 @@ def main():
         tags=tags,
         shardSize=SHARD,
     ))
+    stamp_assets()
     size = sum(f.stat().st_size for f in OUT.rglob("*.json")) / 1e6
     print(f"{len(rows)} papers, {len(tags)} tags, {len(abstracts) // SHARD + 1} abstract shards, {size:.1f} MB total")
 

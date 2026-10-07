@@ -30,16 +30,16 @@ const hue = (gi) => Math.round((gi * 360) / META.groups.length);
 const isPinned = (i) => META.tags[i].zh.includes("（全部");
 
 async function init() {
-  const [meta, rows] = await Promise.all([
-    fetch("data/meta.json").then((r) => r.json()),
-    fetch("data/papers.json").then((r) => r.json()),
-  ]);
+  const meta = await fetch("data/meta.json", { cache: "no-cache" }).then((r) => r.json());
+  const rows = await fetch(`data/papers.json?v=${meta.version}`).then((r) => r.json());
   META = meta;
   META.tagIndex = new Map(META.tags.map((t, i) => [t.id, i]));
   P = rows.map((r, i) => ({
     i, id: r[0], num: r[1], title: r[2], kw: r[3], area: r[4], status: r[5], tags: r[6],
-    titleL: r[2].toLowerCase(),
-    hay: (r[2] + " \u0001 " + r[3]).toLowerCase(),
+    // Only the Chinese part of tag names is searchable: Latin words in names such as "（全部：RSI / Self-Play）"
+    // would otherwise make English queries match every paper under an umbrella tag.
+    hay: (r[2] + " \u0001 " + r[3] + " \u0001 " +
+      r[6].map((t) => meta.tags[t].zh.replace(/[A-Za-z0-9]+/g, " ")).join(" \u0001 ")).toLowerCase(),
   }));
 
   const sc = META.statusCounts;
@@ -62,11 +62,17 @@ function tokenize(q) {
   return toks.filter(Boolean);
 }
 
+const CJK = /[\u3400-\u9fff\uf900-\ufaff]/;
+// Latin tokens must start at a word boundary ("rl" must not match "world", "rsi" not "adversarial");
+// CJK text has no word boundaries, so CJK tokens match anywhere.
+const tokenSource = (t) => (CJK.test(t[0]) ? "" : "(?<![a-z0-9])") + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const matchers = (q) => tokenize(q).map((t) => new RegExp(tokenSource(t), "i"));
+
 function baseFilter() {
-  const toks = tokenize(state.q);
+  const ms = matchers(state.q);
   const area = state.area === "" ? -1 : Number(state.area);
   const st = new Set([...state.status].map((s) => META.statuses.indexOf(s)));
-  return P.filter((p) => st.has(p.status) && (area < 0 || p.area === area) && toks.every((t) => p.hay.includes(t)));
+  return P.filter((p) => st.has(p.status) && (area < 0 || p.area === area) && ms.every((m) => m.test(p.hay)));
 }
 
 function tagMatch(p) {
@@ -80,10 +86,10 @@ function tagMatch(p) {
 }
 
 function sortResults() {
-  const toks = tokenize(state.q);
+  const ms = matchers(state.q);
   const byNum = (a, b) => a.status - b.status || a.num - b.num;
-  if (state.sort === "rel" && toks.length) {
-    const score = (p) => toks.reduce((s, t) => s + (p.titleL.includes(t) ? 2 : 1), 0);
+  if (state.sort === "rel" && ms.length) {
+    const score = (p) => ms.reduce((s, m) => s + (m.test(p.title) ? 2 : 1), 0);
     for (const p of results) p._s = score(p);
     results.sort((a, b) => b._s - a._s || byNum(a, b));
   } else if (state.sort === "num_desc") {
@@ -150,6 +156,17 @@ function renderActiveFilters() {
   if (state.area !== "") items.push(`<button class="afilter" data-rm="area">${esc(META.areas[Number(state.area)])}</button>`);
   if (items.length > 1) items.push(`<button class="afilter clear" data-rm="all">清除全部</button>`);
   $("#active-filters").innerHTML = items.join("");
+
+  const ms = matchers(state.q);
+  const matches = ms.length
+    ? META.tags.map((t, i) => i).filter((i) => !state.tags.has(i) &&
+        ms.every((m) => m.test(`${META.tags[i].zh} ${META.tags[i].en} ${META.tags[i].id}`)))
+    : [];
+  $("#tag-suggest").innerHTML = matches.length
+    ? `<span class="muted">匹配的标签（点击改为按标签筛选）：</span>` + matches.slice(0, 10).map((i) =>
+        `<button class="chip" data-suggest="${i}" style="--hue:${hue(META.tags[i].g)}" title="${esc(META.tags[i].en)}">${esc(META.tags[i].zh)} · ${fmt(META.tags[i].count)}</button>`
+      ).join("")
+    : "";
 }
 
 function renderOverview() {
@@ -168,14 +185,14 @@ function renderOverview() {
 
 function highlight(text, toks) {
   if (!toks.length) return esc(text);
-  const re = new RegExp("(" + toks.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")", "gi");
+  const re = new RegExp("(" + toks.map(tokenSource).join("|") + ")", "gi");
   return text.split(re).map((s, k) => (k % 2 ? `<mark>${esc(s)}</mark>` : esc(s))).join("");
 }
 
 function card(p, toks) {
   const st = META.statuses[p.status];
   const chips = p.tags.map((t) =>
-    `<button class="chip${state.tags.has(t) ? " on" : ""}" data-tag="${t}" style="--hue:${hue(META.tags[t].g)}" title="${esc(META.tags[t].en)}">${esc(META.tags[t].zh)}</button>`
+    `<button class="chip${state.tags.has(t) ? " on" : ""}" data-tag="${t}" style="--hue:${hue(META.tags[t].g)}" title="${esc(META.tags[t].en)}">${highlight(META.tags[t].zh, toks)}</button>`
   ).join("");
   return `<li class="paper" data-i="${p.i}">
     <div class="ptitle"><a href="https://openreview.net/forum?id=${encodeURIComponent(p.id)}" target="_blank" rel="noopener">${highlight(p.title, toks)}</a>${
@@ -197,7 +214,7 @@ function renderMore() {
 
 async function loadAbstract(i) {
   const shard = Math.floor(i / META.shardSize);
-  if (!absCache.has(shard)) absCache.set(shard, fetch(`data/abs/${shard}.json`).then((r) => r.json()));
+  if (!absCache.has(shard)) absCache.set(shard, fetch(`data/abs/${shard}.json?v=${META.version}`).then((r) => r.json()));
   return (await absCache.get(shard))[i % META.shardSize];
 }
 
@@ -288,6 +305,15 @@ function setupControls() {
       if (t) toggleTag(Number(t.dataset.tag));
     });
   }
+  $("#tag-suggest").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-suggest]");
+    if (!b) return;
+    state.tags.add(Number(b.dataset.suggest));
+    state.q = "";
+    $("#q").value = "";
+    if (state.sort === "rel") { state.sort = "num"; $("#sort").value = "num"; }
+    update();
+  });
   $("#active-filters").addEventListener("click", (e) => {
     const b = e.target.closest("button");
     if (!b) return;

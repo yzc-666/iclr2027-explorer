@@ -96,10 +96,6 @@ TAXONOMY = [
                 R(r"code generation|code llms?|code (?:language )?models?|program synthesis|\bcoding\b|code reasoning|code completion"
                   r"|text-to-sql|\bsql\b|competitive programming|code repair|program repair|unit tests?|verilog|cuda kernels?", min_abs=2),
             ]),
-            ("self_improve", "自我改进 / 自进化 / Self-Play", "Self-Improvement / Self-Evolution / Self-Play", [
-                R(r"self[- ]improv|self[- ]evol|self[- ]play|self[- ]rewarding|self[- ]refine|recursive self|self[- ]correct"
-                  r"|self[- ]reflect|self[- ]train(?:ing)?\b|self[- ]generated (?:data|curricul)|self[- ]verif", min_abs=2),
-            ]),
             ("icl", "上下文学习（ICL）", "In-Context Learning", [
                 R(r"in[- ]context learn|\bicl\b|many[- ]shot|in[- ]context examples|demonstration selection", min_abs=2),
             ]),
@@ -157,7 +153,7 @@ TAXONOMY = [
                 R(r"llm[- ]agents?|language agents?|ai agents?|autonomous agents?|llm-based agents?|foundation model agents?|(?:language )?model agents?"
                   r"|multimodal agents?|agentic (?:ai|systems?|llms?|models?|tasks?|workflows?|search|coding|reasoning|rl|reinforcement|frameworks?|environments?)", min_abs=1),
                 R(r"agentic|\bagents?\b", ctx=LLM, min_abs=3),
-                R(include=["coding_agents", "gui_agents", "deep_research", "agentic_rl", "mas", "science_agents"]),
+                R(include=["coding_agents", "gui_agents", "deep_research", "agentic_rl", "mas", "ai_scientist", "ml_rd", "self_evolving"]),
             ]),
             ("tool_use", "工具调用 / Function Calling / MCP", "Tool Use / Function Calling / MCP", [
                 R(r"tool[- ]use|tool[- ]using|tool[- ]calling|function[- ]calling|tool[- ]augmented|tool[- ]integrated|tool learning"
@@ -203,9 +199,63 @@ TAXONOMY = [
                 R(r"agent(?:ic)? (?:benchmarks?|evaluation|evals?)|benchmark(?:ing)? (?:for )?(?:llm |ai )?agents|evaluat(?:e|ing) (?:llm |ai )?agents", min_abs=1),
                 R(r"\bbench(?:mark)?s?\b|\barena\b", ctx=r"\bagents?\b|agentic", ctx_min=3, min_abs=99),
             ]),
-            ("science_agents", "AI 科学家 / 自动化研究", "AI Scientist & Automated Research", [
-                R(r"ai scientists?|automated (?:scientific )?(?:research|discovery)|scientific agents?|autonomous research"
-                  r"|hypothesis generation|ml engineering agents?|mle-bench|paper writing|research automation|idea generation", min_abs=1),
+        ],
+    },
+    {
+        "id": "autoresearch",
+        "zh": "自动化科研与自我改进",
+        "en": "Auto Research & Self-Improvement (RSI)",
+        "tags": [
+            ("autoresearch_all", "自动化科研（全部）", "Automated Research (all)", [
+                R(include=["ai_scientist", "research_ideation", "paper_review", "ml_rd", "algo_discovery"]),
+            ]),
+            ("ai_scientist", "AutoResearch / AI Scientist（端到端自动科研）", "AutoResearch / AI Scientist", [
+                R(r"auto[- ]?research|(?:autonomous|automated|automating|agentic) (?:ai |ml |scientific |end-to-end )?research\b|ai[- ]scientists?|ai co-?scientists?"
+                  r"|(?<!deep )(?<!investment )research agents?|scientific (?:research )?agents?|(?:automated|autonomous|agentic|llm-driven|ai-driven) (?:scientific )?discovery"
+                  r"|ai for (?:research|scientific discovery)|end-to-end (?:scientific )?research|research automation|ai4research|ai-driven research"
+                  r"|automate (?:the )?(?:scientific|research) (?:process|workflow|pipeline)", min_abs=1),
+            ]),
+            ("research_ideation", "科研构思 / 假设生成 / 新颖性评估", "Research Ideation, Hypotheses & Novelty", [
+                R(r"research ideation|(?:research|scientific) idea(?:s| generation)|idea generation|scientific ideation"
+                  r"|(?:scientific|research|paper|idea) novelty|novelty (?:assessment|analysis|evaluation) of (?:papers|research|ideas)|research taste|scientific lineage"
+                  r"|literature[- ]review (?:generation|construction|automation)|related[- ]work generation|research (?:questions?|directions?) generation", min_abs=1),
+                R(r"hypothesis generation|hypothesis proposal|generat(?:e|ing) (?:scientific )?hypotheses", ctx=AGENT, ctx_min=1, min_abs=1),
+            ]),
+            ("paper_review", "论文写作 / 审稿（AI Reviewer）", "Paper Writing & Peer Review", [
+                R(r"peer[- ]review|paper review|(?:llm|ai|automated|agentic) review(?:ers?|ing)\b|review generation|reviewer (?:agents?|models?|concerns)|meta-review"
+                  r"|paper writing|scientific writing|(?:automated|automatic) (?:survey|paper) (?:writing|generation)|(?:literature|academic|scientific) survey (?:writing|generation)"
+                  r"|survey paper (?:writing|generation)|academic writing", min_abs=1),
+            ]),
+            ("ml_rd", "ML 工程 / AI 研发自动化 / 论文复现", "ML Engineering, AI R&D Automation & Replication", [
+                R(r"mle-bench|ml engineering|machine learning engineering|kaggle|ai r&d|ai research and development|research engineering|paperbench|\bre-bench"
+                  r"|\bcore-bench|paper (?:replication|reproduction)|reproduc(?:e|ing|tion of) (?:ml |machine learning |research )?papers|reproduc(?:e|ing) (?:the )?claims"
+                  r"|ai[- ]train(?:s|ing)?[- ]ai|\bai4ai\b|(?:automated|autonomous) (?:ml|machine learning) (?:experiments?|research|engineering)"
+                  r"|experiment(?:ation)? (?:automation|agents?)|(?:agentic )?data science agents?|agentic data science|automl agents?|llm-driven automl", min_abs=1),
+            ]),
+            ("algo_discovery", "LLM 驱动的算法 / 启发式 / 数学发现（AlphaEvolve 类）", "LLM-driven Algorithm & Math Discovery (AlphaEvolve-style)", [
+                R(r"alphaevolve|funsearch|openevolve|shinkaevolve|(?:automated|automatic|llm[- ](?:based|driven|guided)) (?:algorithm|heuristic) (?:design|discovery)"
+                  r"|algorithm(?:ic)? discovery|program discovery|optimizer discovery|mathematical discovery|evolution of heuristics|\beoh\b|test-time discovery"
+                  r"|(?:llm|language model)[- ](?:guided|driven|based|powered) (?:evolution|evolutionary)|evolutionary (?:program|code) (?:search|evolution|optimi[sz]ation)"
+                  r"|(?:discover|discovering|evolv(?:e|ing)) (?:new |novel |better )?(?:algorithms|heuristics|programs)", min_abs=1),
+                R(acr=r"\bAHD\b", min_abs=1),
+            ]),
+            ("rsi", "递归自我改进（RSI）", "Recursive Self-Improvement (RSI)", [
+                R(r"recursive(?:ly)? self[- ]?improv|recursive (?:improvement|self-modification|self-training)|self[- ]improving (?:ai|systems?)|g[öo]del machines?"
+                  r"|self[- ]modifying (?:agents?|code|ai|systems?)|self[- ]referential (?:improvement|self-improvement|agents?)|intelligence explosion"
+                  r"|improv(?:e|es|ing) (?:its|their) own (?:code|training|learning|scaffold|algorithms?|harness|source code|weights)", min_abs=1),
+                R(acr=r"\bRSI\b", ctx=r"self[- ]improv|recursive|self[- ]evol|self[- ]modif", ctx_min=1, min_abs=1),
+                R(acr=r"(?:\| |; )RSI(?= ;|$)", ctx=AGENT, ctx_min=1, min_abs=99),
+            ]),
+            ("self_evolving", "自进化智能体（经验 / 技能 / 记忆进化）", "Self-Evolving Agents (experience, skills, memory)", [
+                R(r"self[- ]evol(?:ving|ve|ved|ution)|self[- ]improving agents?|agent(?:ic)? self[- ](?:evolution|improvement)|skill (?:evolution|self-evolution)"
+                  r"|experience[- ](?:driven|based) (?:learning|evolution|self-improvement)|(?:memory|harness|prompt|workflow) (?:self-)?evolution"
+                  r"|lifelong (?:llm )?agents?|continual(?:ly)? (?:learning|improving) agents?|test-time (?:self-)?evolution|learn(?:s|ing)? from (?:past )?experiences?",
+                  ctx=AGENT, ctx_min=1, min_abs=1),
+            ]),
+            ("self_improve", "自我改进（全部：RSI / 自进化 / Self-Play / 自纠错）", "Self-Improvement (all)", [
+                R(r"self[- ]improv|self[- ]evol|self[- ]play|self[- ]rewarding|self[- ]refine|recursive self|self[- ]correct"
+                  r"|self[- ]reflect|self[- ]train(?:ing)?\b|self[- ]generated (?:data|curricul)|self[- ]verif", min_abs=2),
+                R(include=["rsi", "self_evolving"]),
             ]),
         ],
     },

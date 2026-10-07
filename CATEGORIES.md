@@ -1,6 +1,6 @@
 # ICLR 2027 投稿分类统计
 
-有效投稿 42,378 篇（另有撤稿 216、desk reject 419，不计入下表）。每篇平均 4.0 个标签，未命中任何标签 466 篇（1.1%）。标签可重叠，所以各标签数量之和大于论文总数。
+有效投稿 42,378 篇（另有撤稿 216、desk reject 419，不计入下表）。每篇平均 4.1 个标签，未命中任何标签 462 篇（1.1%）。标签可重叠，所以各标签数量之和大于论文总数。
 
 ## 一级：OpenReview primary area（作者自选）
 
@@ -30,7 +30,7 @@
 
 ## 二级：细分标签（规则匹配，见 `scripts/taxonomy.py`）
 
-### LLM 训练与推理（LLM Training & Reasoning）— 22,421 篇
+### LLM 训练与推理（LLM Training & Reasoning）— 22,115 篇
 
 | 标签 | English | 篇数 |
 |---|---|---:|
@@ -39,7 +39,6 @@
 | LLM 强化学习（RLVR / GRPO） | RL for LLMs (RLVR/GRPO) | 3,098 |
 | 知识蒸馏（通用） | Knowledge Distillation | 2,129 |
 | 参数高效微调（LoRA / PEFT） | PEFT / LoRA | 1,230 |
-| 自我改进 / 自进化 / Self-Play | Self-Improvement / Self-Evolution / Self-Play | 1,191 |
 | 代码生成 | Code Generation | 1,125 |
 | 检索增强 / 检索 / Embedding | RAG, Retrieval & Embeddings | 993 |
 | 测试时扩展（Test-time Scaling） | Test-time Scaling & Search | 951 |
@@ -62,11 +61,11 @@
 | 奖励欺骗（Reward Hacking） | Reward Hacking | 198 |
 | 知识编辑 | Knowledge / Model Editing | 172 |
 
-### 智能体（Agents）— 7,825 篇
+### 智能体（Agents）— 7,984 篇
 
 | 标签 | English | 篇数 |
 |---|---|---:|
-| LLM 智能体（全部） | LLM Agents (all) | 6,775 |
+| LLM 智能体（全部） | LLM Agents (all) | 7,035 |
 | Harness / Skills / 上下文工程 / Prompt 优化 | Harness, Skills, Context Eng. & Prompt Optimization | 1,559 |
 | 智能体评测 / Benchmark | Agent Benchmarks & Evaluation | 1,524 |
 | 工具调用 / Function Calling / MCP | Tool Use / Function Calling / MCP | 1,301 |
@@ -76,7 +75,20 @@
 | 代码智能体 / SWE Agent | Coding / SWE Agents | 836 |
 | 深度研究 / 搜索智能体 | Deep Research / Search Agents | 529 |
 | GUI / Web / Computer-use 智能体 | GUI / Web / Computer-use Agents | 464 |
-| AI 科学家 / 自动化研究 | AI Scientist & Automated Research | 261 |
+
+### 自动化科研与自我改进（Auto Research & Self-Improvement (RSI)）— 2,060 篇
+
+| 标签 | English | 篇数 |
+|---|---|---:|
+| 自我改进（全部：RSI / 自进化 / Self-Play / 自纠错） | Self-Improvement (all) | 1,454 |
+| 自进化智能体（经验 / 技能 / 记忆进化） | Self-Evolving Agents (experience, skills, memory) | 852 |
+| 自动化科研（全部） | Automated Research (all) | 683 |
+| AutoResearch / AI Scientist（端到端自动科研） | AutoResearch / AI Scientist | 368 |
+| 递归自我改进（RSI） | Recursive Self-Improvement (RSI) | 256 |
+| LLM 驱动的算法 / 启发式 / 数学发现（AlphaEvolve 类） | LLM-driven Algorithm & Math Discovery (AlphaEvolve-style) | 167 |
+| 论文写作 / 审稿（AI Reviewer） | Paper Writing & Peer Review | 94 |
+| 科研构思 / 假设生成 / 新颖性评估 | Research Ideation, Hypotheses & Novelty | 86 |
+| ML 工程 / AI 研发自动化 / 论文复现 | ML Engineering, AI R&D Automation & Replication | 76 |
 
 ### 模型架构（Architectures）— 3,433 篇
 

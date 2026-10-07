@@ -79,6 +79,9 @@ main { flex: 1; min-width: 0; }
 .afilter.clear { background: none; border-style: dashed; }
 .afilter.clear::after { content: none; }
 
+#tag-suggest { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; font-size: 13px; }
+#tag-suggest:empty { display: none; }
+
 .toolbar { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
 .toolbar .spacer { flex: 1; }
 #count { font-size: 16px; font-weight: 600; }
