@@ -65,7 +65,7 @@
 
 | 标签 | English | 篇数 |
 |---|---|---:|
-| LLM 智能体（全部） | LLM Agents (all) | 7,035 |
+| LLM 智能体（全部） | LLM Agents (all) | 7,984 |
 | Harness / Skills / 上下文工程 / Prompt 优化 | Harness, Skills, Context Eng. & Prompt Optimization | 1,559 |
 | 智能体评测 / Benchmark | Agent Benchmarks & Evaluation | 1,524 |
 | 工具调用 / Function Calling / MCP | Tool Use / Function Calling / MCP | 1,301 |
@@ -144,7 +144,7 @@
 
 | 标签 | English | 篇数 |
 |---|---|---:|
-| 强化学习（全部，含 LLM RL） | Reinforcement Learning (all, incl. RL for LLMs) | 5,928 |
+| 强化学习（全部，含 LLM RL） | Reinforcement Learning (all, incl. RL for LLMs) | 6,068 |
 | Bandit / 在线学习 | Bandits & Online Learning | 725 |
 | 值函数 / TD 学习 / Actor-Critic | Value-based, TD & Actor-Critic | 653 |
 | 模仿学习 / 行为克隆 / 逆强化学习 | Imitation Learning / BC / IRL | 392 |
@@ -175,7 +175,7 @@
 
 | 标签 | English | 篇数 |
 |---|---|---:|
-| 可解释性（全部） | Interpretability (all) | 3,598 |
+| 可解释性（全部） | Interpretability (all) | 4,173 |
 | 机制可解释性 / 电路分析 | Mechanistic Interpretability & Circuits | 1,260 |
 | 探针 / 表征分析与几何 | Probing & Representation Analysis/Geometry | 1,052 |
 | 激活引导 / 表征工程（Steering） | Activation Steering & Representation Engineering | 742 |

@@ -52,9 +52,13 @@ def main():
         idx = []
         for t in g["tags"]:
             idx.append(len(tags))
-            tags.append(dict(id=t["id"], zh=t["zh"], en=t["en"], g=gi, count=t["count"]))
+            tags.append(dict(id=t["id"], zh=t["zh"], en=t["en"], g=gi, count=t["count"], includes=t.get("includes", [])))
         groups.append(dict(id=g["id"], zh=g["zh"], en=g["en"], tags=idx))
     tag_index = {t["id"]: i for i, t in enumerate(tags)}
+    for t in tags:
+        children = [tag_index[c] for c in t.pop("includes")]
+        if children:
+            t["children"] = children
 
     area_counts = Counter(p["primary_area"] for p in papers if p["status"] == "active")
     areas = [a for a, _ in area_counts.most_common()]

@@ -125,7 +125,11 @@ def write_outputs(papers, tags, assigned):
     taxonomy = [
         dict(
             id=g["id"], zh=g["zh"], en=g["en"], count=group_counts[g["id"]],
-            tags=[dict(id=t["id"], zh=t["zh"], en=t["en"], count=counts[t["id"]]) for t in by_group[g["id"]]],
+            tags=[
+                dict(id=t["id"], zh=t["zh"], en=t["en"], count=counts[t["id"]],
+                     includes=[inc for r in t["rules"] for inc in r["include"] or []])
+                for t in by_group[g["id"]]
+            ],
         )
         for g in TAXONOMY
     ]

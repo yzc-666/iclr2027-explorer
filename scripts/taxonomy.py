@@ -153,7 +153,8 @@ TAXONOMY = [
                 R(r"llm[- ]agents?|language agents?|ai agents?|autonomous agents?|llm-based agents?|foundation model agents?|(?:language )?model agents?"
                   r"|multimodal agents?|agentic (?:ai|systems?|llms?|models?|tasks?|workflows?|search|coding|reasoning|rl|reinforcement|frameworks?|environments?)", min_abs=1),
                 R(r"agentic|\bagents?\b", ctx=LLM, min_abs=3),
-                R(include=["coding_agents", "gui_agents", "deep_research", "agentic_rl", "mas", "ai_scientist", "ml_rd", "self_evolving"]),
+                R(include=["harness", "agent_eval", "tool_use", "agent_memory", "agentic_rl", "mas", "coding_agents", "deep_research",
+                           "gui_agents", "ai_scientist", "ml_rd", "self_evolving"]),
             ]),
             ("tool_use", "工具调用 / Function Calling / MCP", "Tool Use / Function Calling / MCP", [
                 R(r"tool[- ]use|tool[- ]using|tool[- ]calling|function[- ]calling|tool[- ]augmented|tool[- ]integrated|tool learning"
@@ -433,7 +434,7 @@ TAXONOMY = [
             ("rl_all", "强化学习（全部，含 LLM RL）", "Reinforcement Learning (all, incl. RL for LLMs)", [
                 R(RL, min_abs=2),
                 R(areas={"reinforcement learning"}),
-                R(include=["rl4llm", "agentic_rl", "offline_rl", "mbrl", "marl", "safe_rl", "goal_hrl", "rl_theory"]),
+                R(include=["rl4llm", "agentic_rl", "value_based", "offline_rl", "mbrl", "marl", "exploration", "safe_rl", "goal_hrl", "rl_theory"]),
             ]),
             ("offline_rl", "离线强化学习", "Offline RL", [
                 R(r"offline (?:reinforcement learning|rl|policy|multi-agent|goal|imitation|data)|batch rl|offline-to-online|\bd4rl\b"
@@ -526,7 +527,7 @@ TAXONOMY = [
             ("interp_all", "可解释性（全部）", "Interpretability (all)", [
                 R(r"interpretab|explainab|\bxai\b|mechanistic", min_abs=99),
                 R(areas={"interpretability and explainable AI"}),
-                R(include=["mech_interp", "sae", "steering", "attribution", "concept", "cot_faith"]),
+                R(include=["mech_interp", "sae", "probing", "steering", "attribution", "concept", "cot_faith"]),
             ]),
             ("mech_interp", "机制可解释性 / 电路分析", "Mechanistic Interpretability & Circuits", [
                 R(r"mechanistic interpretab|circuit (?:discovery|analysis|tracing)|attribution graphs?|activation patching|causal (?:tracing|mediation|abstraction)"

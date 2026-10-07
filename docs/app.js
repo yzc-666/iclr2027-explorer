@@ -142,20 +142,52 @@ function update(push = true) {
   if (push) writeHash();
 }
 
+const isUmbrella = (i) => isPinned(i) || Boolean(META.tags[i].children);
+const byCount = (a, b) => lastCounts[b] - lastCounts[a] || META.tags[b].count - META.tags[a].count;
+
+// One group's tags as rows: each umbrella tag followed by its indented sub-tags (which may live in
+// another group), then the group's remaining tags under an "其他" label.
+function groupLayout(gi) {
+  const g = META.groups[gi];
+  const rows = [];
+  const placed = new Set();
+  const umbrellas = g.tags.filter(isUmbrella);
+  for (const u of umbrellas) {
+    rows.push({ i: u, level: 0, umbrella: true });
+    placed.add(u);
+    for (const c of (META.tags[u].children || []).slice().sort(byCount)) {
+      rows.push({ i: c, level: 1, foreign: META.tags[c].g !== gi });
+      if (META.tags[c].g === gi) placed.add(c);
+    }
+  }
+  const rest = g.tags.filter((i) => !placed.has(i)).sort(byCount);
+  if (rest.length && umbrellas.some((u) => META.tags[u].children)) rows.push({ label: "其他" });
+  for (const i of rest) rows.push({ i, level: 0 });
+  return rows;
+}
+
+const groupShort = (gi) => META.groups[gi].zh.split(/与|、| \/ /)[0].trim();
+const fromLabel = (i) => `<span class="from" title="属于「${esc(META.groups[META.tags[i].g].zh)}」大类">· ${esc(groupShort(META.tags[i].g))}</span>`;
+
+function sidebarRow(r) {
+  if (r.label) return `<li class="sublabel">${esc(r.label)}</li>`;
+  const t = META.tags[r.i], n = lastCounts[r.i];
+  const cls = ["tag", state.tags.has(r.i) && "on", !n && "zero", r.umbrella && "pinned"].filter(Boolean).join(" ");
+  return `<li class="lvl${r.level}"><button class="${cls}" data-tag="${r.i}" title="${esc(t.en)}"><span class="name">${esc(t.zh)}${r.foreign ? fromLabel(r.i) : ""}</span><span class="n">${fmt(n)}</span></button></li>`;
+}
+
 function renderSidebar() {
   const f = state.tagFilter.trim().toLowerCase();
   $("#groups").innerHTML = META.groups.map((g, gi) => {
-    let idx = g.tags.slice().sort((a, b) => isPinned(b) - isPinned(a) || lastCounts[b] - lastCounts[a] || META.tags[b].count - META.tags[a].count);
-    if (f) idx = idx.filter((i) => `${META.tags[i].zh} ${META.tags[i].en} ${META.tags[i].id}`.toLowerCase().includes(f));
-    if (!idx.length) return "";
+    const rows = f
+      ? g.tags.filter((i) => `${META.tags[i].zh} ${META.tags[i].en} ${META.tags[i].id}`.toLowerCase().includes(f))
+          .sort(byCount).map((i) => ({ i, level: 0, umbrella: isUmbrella(i) }))
+      : groupLayout(gi);
+    if (!rows.length) return "";
     const open = f || !collapsed.has(g.id);
     return `<div class="group${open ? " open" : ""}" style="--hue:${hue(gi)}">
       <button class="ghead" data-group="${g.id}"><span class="caret"></span>${esc(g.zh)}<span class="muted en">${esc(g.en)}</span><span class="n">${fmt(lastGroupCounts[gi])}</span></button>
-      <ul>${idx.map((i) => {
-        const t = META.tags[i], n = lastCounts[i];
-        const cls = ["tag", state.tags.has(i) && "on", !n && "zero", isPinned(i) && "pinned"].filter(Boolean).join(" ");
-        return `<li><button class="${cls}" data-tag="${i}" title="${esc(t.en)}"><span class="name">${esc(t.zh)}</span><span class="n">${fmt(n)}</span></button></li>`;
-      }).join("")}</ul></div>`;
+      <ul>${rows.map(sidebarRow).join("")}</ul></div>`;
   }).join("") || `<p class="muted" style="padding:12px">没有匹配的标签</p>`;
 }
 
@@ -192,13 +224,15 @@ function renderActiveFilters() {
 function renderOverview() {
   if (state.tags.size || state.q) { $("#overview").innerHTML = ""; return; }
   $("#overview").innerHTML = META.groups.map((g, gi) => {
-    const idx = g.tags.slice().sort((a, b) => isPinned(b) - isPinned(a) || lastCounts[b] - lastCounts[a]);
-    const max = Math.max(1, ...idx.filter((i) => !isPinned(i)).map((i) => lastCounts[i]));
+    const rows = groupLayout(gi);
+    const max = Math.max(1, ...rows.filter((r) => r.i !== undefined && !r.umbrella).map((r) => lastCounts[r.i]));
     return `<div class="ocard" style="--hue:${hue(gi)}">
       <h3>${esc(g.zh)}<span class="n">${fmt(lastGroupCounts[gi])} 篇</span></h3>
-      ${idx.map((i) => `<button class="obar" data-tag="${i}" title="${esc(META.tags[i].en)}">
-        <span class="fill" style="width:${Math.min(100, (100 * lastCounts[i]) / max)}%"></span>
-        <span>${esc(META.tags[i].zh)}</span><span class="n">${fmt(lastCounts[i])}</span></button>`).join("")}
+      ${rows.map((r) => r.label ? `<div class="osub">${esc(r.label)}</div>` :
+        `<button class="obar lvl${r.level}${r.umbrella ? " umbrella" : ""}" data-tag="${r.i}" title="${esc(META.tags[r.i].en)}">
+        <span class="fill" style="width:${Math.min(100, (100 * lastCounts[r.i]) / max)}%"></span>
+        <span>${esc(META.tags[r.i].zh)}${r.foreign ? fromLabel(r.i) : ""}</span>
+        <span class="n">${fmt(lastCounts[r.i])}</span></button>`).join("")}
     </div>`;
   }).join("");
 }
