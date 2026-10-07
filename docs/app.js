@@ -223,7 +223,9 @@ function renderActiveFilters() {
 
 function renderOverview() {
   if (state.tags.size || state.q) { $("#overview").innerHTML = ""; return; }
-  $("#overview").innerHTML = META.groups.map((g, gi) => {
+  $("#overview").innerHTML = `<a class="trends-banner" href="trends.html"><strong>投稿规律</strong>
+    <span>十条规律，以及关键词排行、RL / 智能体子方向、基座模型、投稿时间线等统计图</span><span class="go">查看 →</span></a>` +
+  META.groups.map((g, gi) => {
     const rows = groupLayout(gi);
     const max = Math.max(1, ...rows.filter((r) => r.i !== undefined && !r.umbrella).map((r) => lastCounts[r.i]));
     return `<div class="ocard" style="--hue:${hue(gi)}">

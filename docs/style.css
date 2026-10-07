@@ -141,6 +141,15 @@ footer { padding: 16px 20px 28px; font-size: 12px; }
 .nav a { color: #f6dedc; padding: 6px 10px; border-radius: 6px; white-space: nowrap; }
 .nav a:hover { background: rgba(255, 255, 255, 0.12); text-decoration: none; }
 .nav a.current { background: rgba(255, 255, 255, 0.18); color: #fff; }
+.nav a:not(.current) { border: 1px solid rgba(255, 255, 255, 0.45); color: #fff; }
+.trends-banner {
+  grid-column: 1 / -1; display: flex; gap: 12px; align-items: baseline; padding: 10px 14px;
+  background: var(--accent-soft); border: 1px solid #f0c9c6; border-radius: 8px; color: var(--text);
+}
+.trends-banner:hover { text-decoration: none; border-color: var(--accent); }
+.trends-banner strong { color: var(--accent); white-space: nowrap; }
+.trends-banner span { color: #4b5563; font-size: 13px; }
+.trends-banner .go { margin-left: auto; color: var(--accent); white-space: nowrap; }
 .trends-page .topbar { justify-content: space-between; }
 
 .trends { max-width: 1120px; margin: 0 auto; padding: 20px; }
