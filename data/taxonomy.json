@@ -1,0 +1,1114 @@
+[
+ {
+  "id": "llm",
+  "zh": "LLM 训练与推理",
+  "en": "LLM Training & Reasoning",
+  "count": 22421,
+  "tags": [
+   {
+    "id": "llm_all",
+    "zh": "LLM 相关（全部）",
+    "en": "LLM-related (all)",
+    "count": 17084
+   },
+   {
+    "id": "rl4llm",
+    "zh": "LLM 强化学习（RLVR / GRPO）",
+    "en": "RL for LLMs (RLVR/GRPO)",
+    "count": 3098
+   },
+   {
+    "id": "rlhf",
+    "zh": "RLHF 与偏好优化（DPO 等）",
+    "en": "RLHF & Preference Optimization",
+    "count": 480
+   },
+   {
+    "id": "reward_model",
+    "zh": "奖励模型（ORM / PRM / Verifier）",
+    "en": "Reward Models & Verifiers",
+    "count": 653
+   },
+   {
+    "id": "reward_hacking",
+    "zh": "奖励欺骗（Reward Hacking）",
+    "en": "Reward Hacking",
+    "count": 198
+   },
+   {
+    "id": "opd",
+    "zh": "在线策略蒸馏（OPD）",
+    "en": "On-Policy Distillation (OPD)",
+    "count": 912
+   },
+   {
+    "id": "kd",
+    "zh": "知识蒸馏（通用）",
+    "en": "Knowledge Distillation",
+    "count": 2129
+   },
+   {
+    "id": "cot",
+    "zh": "LLM 推理 / 思维链 / 推理模型",
+    "en": "LLM Reasoning / CoT / Reasoning Models",
+    "count": 3504
+   },
+   {
+    "id": "latent_reasoning",
+    "zh": "隐式 / 连续空间推理",
+    "en": "Latent / Continuous Reasoning",
+    "count": 345
+   },
+   {
+    "id": "tts",
+    "zh": "测试时扩展（Test-time Scaling）",
+    "en": "Test-time Scaling & Search",
+    "count": 951
+   },
+   {
+    "id": "efficient_reasoning",
+    "zh": "高效推理（Overthinking / 推理长度）",
+    "en": "Efficient Reasoning (overthinking, length)",
+    "count": 631
+   },
+   {
+    "id": "math",
+    "zh": "数学推理与定理证明",
+    "en": "Math Reasoning & Theorem Proving",
+    "count": 545
+   },
+   {
+    "id": "code",
+    "zh": "代码生成",
+    "en": "Code Generation",
+    "count": 1125
+   },
+   {
+    "id": "self_improve",
+    "zh": "自我改进 / 自进化 / Self-Play",
+    "en": "Self-Improvement / Self-Evolution / Self-Play",
+    "count": 1191
+   },
+   {
+    "id": "icl",
+    "zh": "上下文学习（ICL）",
+    "en": "In-Context Learning",
+    "count": 389
+   },
+   {
+    "id": "long_context",
+    "zh": "长上下文",
+    "en": "Long Context",
+    "count": 726
+   },
+   {
+    "id": "rag",
+    "zh": "检索增强 / 检索 / Embedding",
+    "en": "RAG, Retrieval & Embeddings",
+    "count": 993
+   },
+   {
+    "id": "hallucination",
+    "zh": "幻觉与事实性",
+    "en": "Hallucination & Factuality",
+    "count": 491
+   },
+   {
+    "id": "judge",
+    "zh": "LLM-as-a-Judge / 自动评测",
+    "en": "LLM-as-a-Judge",
+    "count": 338
+   },
+   {
+    "id": "pretrain",
+    "zh": "预训练与 Scaling Law",
+    "en": "Pretraining & Scaling Laws",
+    "count": 416
+   },
+   {
+    "id": "tokenization",
+    "zh": "Tokenizer / 分词",
+    "en": "Tokenization",
+    "count": 331
+   },
+   {
+    "id": "peft",
+    "zh": "参数高效微调（LoRA / PEFT）",
+    "en": "PEFT / LoRA",
+    "count": 1230
+   },
+   {
+    "id": "merging",
+    "zh": "模型合并 / 任务向量",
+    "en": "Model Merging & Task Vectors",
+    "count": 253
+   },
+   {
+    "id": "editing",
+    "zh": "知识编辑",
+    "en": "Knowledge / Model Editing",
+    "count": 172
+   },
+   {
+    "id": "sft",
+    "zh": "指令微调 / SFT",
+    "en": "Instruction Tuning & SFT",
+    "count": 875
+   },
+   {
+    "id": "multilingual",
+    "zh": "多语言 / 翻译",
+    "en": "Multilingual & Translation",
+    "count": 331
+   },
+   {
+    "id": "persona",
+    "zh": "个性化 / 角色扮演 / 用户模拟",
+    "en": "Personalization, Persona & User Simulation",
+    "count": 428
+   }
+  ]
+ },
+ {
+  "id": "agents",
+  "zh": "智能体",
+  "en": "Agents",
+  "count": 7825,
+  "tags": [
+   {
+    "id": "llm_agents",
+    "zh": "LLM 智能体（全部）",
+    "en": "LLM Agents (all)",
+    "count": 6775
+   },
+   {
+    "id": "tool_use",
+    "zh": "工具调用 / Function Calling / MCP",
+    "en": "Tool Use / Function Calling / MCP",
+    "count": 1301
+   },
+   {
+    "id": "agent_memory",
+    "zh": "智能体记忆",
+    "en": "Agent Memory",
+    "count": 984
+   },
+   {
+    "id": "coding_agents",
+    "zh": "代码智能体 / SWE Agent",
+    "en": "Coding / SWE Agents",
+    "count": 836
+   },
+   {
+    "id": "gui_agents",
+    "zh": "GUI / Web / Computer-use 智能体",
+    "en": "GUI / Web / Computer-use Agents",
+    "count": 464
+   },
+   {
+    "id": "deep_research",
+    "zh": "深度研究 / 搜索智能体",
+    "en": "Deep Research / Search Agents",
+    "count": 529
+   },
+   {
+    "id": "mas",
+    "zh": "多智能体系统（LLM）",
+    "en": "LLM Multi-Agent Systems",
+    "count": 911
+   },
+   {
+    "id": "harness",
+    "zh": "Harness / Skills / 上下文工程 / Prompt 优化",
+    "en": "Harness, Skills, Context Eng. & Prompt Optimization",
+    "count": 1559
+   },
+   {
+    "id": "agentic_rl",
+    "zh": "智能体强化学习（Agentic RL）",
+    "en": "Agentic RL",
+    "count": 986
+   },
+   {
+    "id": "agent_eval",
+    "zh": "智能体评测 / Benchmark",
+    "en": "Agent Benchmarks & Evaluation",
+    "count": 1524
+   },
+   {
+    "id": "science_agents",
+    "zh": "AI 科学家 / 自动化研究",
+    "en": "AI Scientist & Automated Research",
+    "count": 261
+   }
+  ]
+ },
+ {
+  "id": "arch",
+  "zh": "模型架构",
+  "en": "Architectures",
+  "count": 3433,
+  "tags": [
+   {
+    "id": "looped",
+    "zh": "循环 / 递归深度 Transformer（Loop Transformer）",
+    "en": "Looped / Recurrent-depth Transformers",
+    "count": 253
+   },
+   {
+    "id": "adaptive_compute",
+    "zh": "自适应计算 / Early Exit / 动态深度",
+    "en": "Adaptive Computation / Early Exit",
+    "count": 352
+   },
+   {
+    "id": "moe",
+    "zh": "混合专家（MoE）",
+    "en": "Mixture-of-Experts",
+    "count": 818
+   },
+   {
+    "id": "ssm",
+    "zh": "线性注意力 / SSM / RNN",
+    "en": "Linear Attention / SSM / RNN",
+    "count": 571
+   },
+   {
+    "id": "attention",
+    "zh": "注意力机制 / 稀疏注意力",
+    "en": "Attention Mechanisms / Sparse Attention",
+    "count": 652
+   },
+   {
+    "id": "posenc",
+    "zh": "位置编码 / 长度泛化",
+    "en": "Positional Encoding & Length Generalization",
+    "count": 458
+   },
+   {
+    "id": "ttt",
+    "zh": "测试时训练 / 记忆层 / 联想记忆",
+    "en": "Test-time Training / Memory Layers / Associative Memory",
+    "count": 297
+   },
+   {
+    "id": "snn",
+    "zh": "脉冲 / 类脑网络",
+    "en": "Spiking & Neuromorphic",
+    "count": 219
+   },
+   {
+    "id": "kan",
+    "zh": "KAN / 归一化 / 超网络等网络组件",
+    "en": "KANs, Normalization, Hypernetworks & Other Blocks",
+    "count": 231
+   }
+  ]
+ },
+ {
+  "id": "gen",
+  "zh": "生成模型",
+  "en": "Generative Models",
+  "count": 7239,
+  "tags": [
+   {
+    "id": "diffusion",
+    "zh": "扩散模型（全部）",
+    "en": "Diffusion Models (all)",
+    "count": 3474
+   },
+   {
+    "id": "flow_matching",
+    "zh": "Flow Matching / 归一化流",
+    "en": "Flow Matching & Normalizing Flows",
+    "count": 1295
+   },
+   {
+    "id": "dllm",
+    "zh": "扩散语言模型 / 离散扩散",
+    "en": "Diffusion Language Models / Discrete Diffusion",
+    "count": 637
+   },
+   {
+    "id": "fewstep",
+    "zh": "少步生成 / 一致性模型 / 扩散加速",
+    "en": "Few-step / Consistency / Diffusion Acceleration",
+    "count": 696
+   },
+   {
+    "id": "guidance",
+    "zh": "引导与可控生成（CFG 等）",
+    "en": "Guidance & Controllable Generation",
+    "count": 759
+   },
+   {
+    "id": "diff_align",
+    "zh": "扩散模型对齐 / 奖励微调",
+    "en": "Diffusion Alignment & Reward Fine-tuning",
+    "count": 546
+   },
+   {
+    "id": "t2i",
+    "zh": "图像生成 / 文生图",
+    "en": "Image Generation / Text-to-Image",
+    "count": 1266
+   },
+   {
+    "id": "ar_visual",
+    "zh": "自回归视觉生成 / 视觉 Tokenizer",
+    "en": "Autoregressive Visual Generation & Visual Tokenizers",
+    "count": 356
+   },
+   {
+    "id": "video_gen",
+    "zh": "视频生成",
+    "en": "Video Generation",
+    "count": 1223
+   },
+   {
+    "id": "img_edit",
+    "zh": "图像 / 视频编辑与个性化生成",
+    "en": "Image/Video Editing & Personalization",
+    "count": 521
+   },
+   {
+    "id": "gen3d",
+    "zh": "3D / 4D 生成",
+    "en": "3D / 4D Generation",
+    "count": 269
+   },
+   {
+    "id": "unified_mm",
+    "zh": "统一理解与生成模型",
+    "en": "Unified Understanding & Generation",
+    "count": 557
+   },
+   {
+    "id": "inverse",
+    "zh": "逆问题 / 图像复原 / 底层视觉",
+    "en": "Inverse Problems, Restoration & Low-level Vision",
+    "count": 650
+   },
+   {
+    "id": "other_gen",
+    "zh": "VAE / GAN / EBM / 其他生成模型",
+    "en": "VAEs / GANs / EBMs",
+    "count": 499
+   },
+   {
+    "id": "gen_theory",
+    "zh": "扩散 / 生成模型理论",
+    "en": "Diffusion & Generative Model Theory",
+    "count": 212
+   }
+  ]
+ },
+ {
+  "id": "mm",
+  "zh": "多模态与视觉",
+  "en": "Multimodal & Vision",
+  "count": 9486,
+  "tags": [
+   {
+    "id": "vlm",
+    "zh": "视觉语言模型（VLM / MLLM）",
+    "en": "Vision-Language Models (VLM/MLLM)",
+    "count": 4294
+   },
+   {
+    "id": "mm_reasoning",
+    "zh": "多模态推理",
+    "en": "Multimodal Reasoning",
+    "count": 634
+   },
+   {
+    "id": "video_und",
+    "zh": "视频理解",
+    "en": "Video Understanding",
+    "count": 986
+   },
+   {
+    "id": "token_compress",
+    "zh": "Token 剪枝 / 压缩",
+    "en": "Token Pruning / Compression",
+    "count": 385
+   },
+   {
+    "id": "spatial",
+    "zh": "空间推理 / 空间智能",
+    "en": "Spatial Reasoning / Spatial Intelligence",
+    "count": 648
+   },
+   {
+    "id": "vision3d",
+    "zh": "3D 视觉（3DGS / NeRF / 重建）",
+    "en": "3D Vision (3DGS / NeRF / Reconstruction)",
+    "count": 1460
+   },
+   {
+    "id": "detseg",
+    "zh": "检测 / 分割 / 跟踪 / 定位",
+    "en": "Detection, Segmentation, Tracking & Grounding",
+    "count": 1486
+   },
+   {
+    "id": "vision_backbone",
+    "zh": "视觉骨干 / ViT / 图像分类",
+    "en": "Vision Backbones / ViT / Classification",
+    "count": 545
+   },
+   {
+    "id": "clip",
+    "zh": "CLIP / 图文对比学习 / 跨模态检索",
+    "en": "CLIP, Image-Text Contrastive & Cross-modal Retrieval",
+    "count": 937
+   },
+   {
+    "id": "audio",
+    "zh": "音频 / 语音 / 音乐",
+    "en": "Audio, Speech & Music",
+    "count": 1108
+   },
+   {
+    "id": "doc_ocr",
+    "zh": "文档 / OCR / 图表理解",
+    "en": "Documents, OCR & Charts",
+    "count": 197
+   }
+  ]
+ },
+ {
+  "id": "rl",
+  "zh": "强化学习",
+  "en": "Reinforcement Learning",
+  "count": 6771,
+  "tags": [
+   {
+    "id": "rl_all",
+    "zh": "强化学习（全部，含 LLM RL）",
+    "en": "Reinforcement Learning (all, incl. RL for LLMs)",
+    "count": 5928
+   },
+   {
+    "id": "offline_rl",
+    "zh": "离线强化学习",
+    "en": "Offline RL",
+    "count": 340
+   },
+   {
+    "id": "mbrl",
+    "zh": "基于模型的强化学习",
+    "en": "Model-based RL",
+    "count": 252
+   },
+   {
+    "id": "marl",
+    "zh": "多智能体强化学习（MARL）",
+    "en": "Multi-Agent RL",
+    "count": 334
+   },
+   {
+    "id": "exploration",
+    "zh": "探索 / 内在激励",
+    "en": "Exploration & Intrinsic Motivation",
+    "count": 297
+   },
+   {
+    "id": "il",
+    "zh": "模仿学习 / 行为克隆 / 逆强化学习",
+    "en": "Imitation Learning / BC / IRL",
+    "count": 392
+   },
+   {
+    "id": "safe_rl",
+    "zh": "安全 / 约束强化学习",
+    "en": "Safe & Constrained RL",
+    "count": 151
+   },
+   {
+    "id": "bandits",
+    "zh": "Bandit / 在线学习",
+    "en": "Bandits & Online Learning",
+    "count": 725
+   },
+   {
+    "id": "goal_hrl",
+    "zh": "目标条件 / 分层 / 无监督 RL",
+    "en": "Goal-conditioned / Hierarchical / Unsupervised RL",
+    "count": 314
+   },
+   {
+    "id": "rl_theory",
+    "zh": "强化学习理论",
+    "en": "RL Theory",
+    "count": 255
+   },
+   {
+    "id": "value_based",
+    "zh": "值函数 / TD 学习 / Actor-Critic",
+    "en": "Value-based, TD & Actor-Critic",
+    "count": 653
+   }
+  ]
+ },
+ {
+  "id": "embodied",
+  "zh": "具身智能 / 机器人 / 世界模型",
+  "en": "Embodied AI, Robotics & World Models",
+  "count": 5279,
+  "tags": [
+   {
+    "id": "vla",
+    "zh": "视觉-语言-动作模型（VLA）",
+    "en": "Vision-Language-Action Models",
+    "count": 1012
+   },
+   {
+    "id": "manipulation",
+    "zh": "机器人操作 / 灵巧手",
+    "en": "Robot Manipulation & Dexterity",
+    "count": 1313
+   },
+   {
+    "id": "robot_all",
+    "zh": "机器人学习（全部）",
+    "en": "Robot Learning (all)",
+    "count": 3334
+   },
+   {
+    "id": "world_models",
+    "zh": "世界模型",
+    "en": "World Models",
+    "count": 1387
+   },
+   {
+    "id": "wam",
+    "zh": "世界-动作模型 / 视频策略",
+    "en": "World Action Models / Video Policies",
+    "count": 494
+   },
+   {
+    "id": "driving",
+    "zh": "自动驾驶",
+    "en": "Autonomous Driving",
+    "count": 596
+   },
+   {
+    "id": "navigation",
+    "zh": "具身导航",
+    "en": "Embodied Navigation",
+    "count": 258
+   },
+   {
+    "id": "locomotion",
+    "zh": "运动控制 / 人形机器人 / Sim2Real",
+    "en": "Locomotion, Humanoids & Sim2Real",
+    "count": 430
+   },
+   {
+    "id": "motion",
+    "zh": "人体动作生成 / 数字人",
+    "en": "Human Motion Generation & Avatars",
+    "count": 512
+   },
+   {
+    "id": "planning",
+    "zh": "规划（LLM / 经典）",
+    "en": "Planning",
+    "count": 1209
+   }
+  ]
+ },
+ {
+  "id": "interp",
+  "zh": "可解释性",
+  "en": "Interpretability",
+  "count": 4468,
+  "tags": [
+   {
+    "id": "interp_all",
+    "zh": "可解释性（全部）",
+    "en": "Interpretability (all)",
+    "count": 3598
+   },
+   {
+    "id": "mech_interp",
+    "zh": "机制可解释性 / 电路分析",
+    "en": "Mechanistic Interpretability & Circuits",
+    "count": 1260
+   },
+   {
+    "id": "sae",
+    "zh": "稀疏自编码器 / 字典学习（SAE）",
+    "en": "Sparse Autoencoders & Dictionary Learning",
+    "count": 344
+   },
+   {
+    "id": "probing",
+    "zh": "探针 / 表征分析与几何",
+    "en": "Probing & Representation Analysis/Geometry",
+    "count": 1052
+   },
+   {
+    "id": "steering",
+    "zh": "激活引导 / 表征工程（Steering）",
+    "en": "Activation Steering & Representation Engineering",
+    "count": 742
+   },
+   {
+    "id": "attribution",
+    "zh": "特征归因 / 数据归因 / XAI",
+    "en": "Feature & Data Attribution / XAI",
+    "count": 513
+   },
+   {
+    "id": "concept",
+    "zh": "概念模型 / 可解释模型设计",
+    "en": "Concept-based & Inherently Interpretable Models",
+    "count": 302
+   },
+   {
+    "id": "cot_faith",
+    "zh": "CoT 忠实性与监控",
+    "en": "CoT Faithfulness & Monitoring",
+    "count": 131
+   },
+   {
+    "id": "memorization",
+    "zh": "记忆 / 数据污染",
+    "en": "Memorization & Contamination",
+    "count": 334
+   }
+  ]
+ },
+ {
+  "id": "safety",
+  "zh": "安全、对齐与可信",
+  "en": "Safety, Alignment & Trust",
+  "count": 4663,
+  "tags": [
+   {
+    "id": "jailbreak",
+    "zh": "越狱 / 红队测试",
+    "en": "Jailbreaks & Red-teaming",
+    "count": 509
+   },
+   {
+    "id": "safety_align",
+    "zh": "安全对齐 / 拒答 / 护栏",
+    "en": "Safety Alignment, Refusal & Guardrails",
+    "count": 1182
+   },
+   {
+    "id": "prompt_injection",
+    "zh": "Prompt 注入 / 智能体安全",
+    "en": "Prompt Injection & Agent Security",
+    "count": 458
+   },
+   {
+    "id": "backdoor",
+    "zh": "后门 / 数据投毒",
+    "en": "Backdoors & Data Poisoning",
+    "count": 336
+   },
+   {
+    "id": "adv",
+    "zh": "对抗鲁棒性",
+    "en": "Adversarial Robustness",
+    "count": 593
+   },
+   {
+    "id": "deception",
+    "zh": "欺骗 / 谄媚 / 谋划 / 涌现失准",
+    "en": "Deception, Sycophancy, Scheming & Misalignment",
+    "count": 359
+   },
+   {
+    "id": "alignment",
+    "zh": "AI 对齐 / 价值对齐 / 可扩展监督",
+    "en": "AI Alignment, Values & Scalable Oversight",
+    "count": 373
+   },
+   {
+    "id": "unlearning",
+    "zh": "机器遗忘 / 概念擦除",
+    "en": "Machine Unlearning & Concept Erasure",
+    "count": 434
+   },
+   {
+    "id": "privacy",
+    "zh": "隐私 / 差分隐私 / 成员推断",
+    "en": "Privacy, DP & Membership Inference",
+    "count": 544
+   },
+   {
+    "id": "federated",
+    "zh": "联邦学习",
+    "en": "Federated Learning",
+    "count": 518
+   },
+   {
+    "id": "watermark",
+    "zh": "水印 / AIGC 检测 / 深度伪造",
+    "en": "Watermarking, AIGC Detection & Deepfakes",
+    "count": 568
+   },
+   {
+    "id": "fairness",
+    "zh": "公平性与偏见",
+    "en": "Fairness & Bias",
+    "count": 348
+   }
+  ]
+ },
+ {
+  "id": "reliable",
+  "zh": "可靠性与泛化",
+  "en": "Reliability & Generalization",
+  "count": 4520,
+  "tags": [
+   {
+    "id": "uq",
+    "zh": "不确定性 / 校准 / 共形预测",
+    "en": "Uncertainty, Calibration & Conformal Prediction",
+    "count": 1726
+   },
+   {
+    "id": "ood",
+    "zh": "OOD 检测 / 分布偏移 / 虚假相关",
+    "en": "OOD, Distribution Shift & Spurious Correlations",
+    "count": 1381
+   },
+   {
+    "id": "adaptation",
+    "zh": "领域适应 / 领域泛化 / 测试时适应",
+    "en": "Domain Adaptation / Generalization / TTA",
+    "count": 988
+   },
+   {
+    "id": "continual",
+    "zh": "持续学习 / 灾难性遗忘",
+    "en": "Continual Learning & Forgetting",
+    "count": 922
+   }
+  ]
+ },
+ {
+  "id": "efficiency",
+  "zh": "高效机器学习",
+  "en": "Efficient ML",
+  "count": 5864,
+  "tags": [
+   {
+    "id": "quant",
+    "zh": "量化",
+    "en": "Quantization",
+    "count": 1120
+   },
+   {
+    "id": "pruning",
+    "zh": "剪枝与稀疏化",
+    "en": "Pruning & Sparsity",
+    "count": 844
+   },
+   {
+    "id": "kv_cache",
+    "zh": "KV Cache 优化",
+    "en": "KV Cache",
+    "count": 843
+   },
+   {
+    "id": "spec_decode",
+    "zh": "投机解码 / 并行解码 / 多 Token 预测",
+    "en": "Speculative & Parallel Decoding / MTP",
+    "count": 402
+   },
+   {
+    "id": "systems",
+    "zh": "推理服务 / 系统 / 硬件",
+    "en": "Serving, Systems & Hardware",
+    "count": 936
+   },
+   {
+    "id": "efficient_train",
+    "zh": "高效训练 / 低精度训练",
+    "en": "Efficient & Low-precision Training",
+    "count": 963
+   },
+   {
+    "id": "routing",
+    "zh": "模型路由 / 级联",
+    "en": "Model Routing & Cascades",
+    "count": 173
+   },
+   {
+    "id": "efficient_all",
+    "zh": "高效推理（全部）",
+    "en": "Efficient Inference (all)",
+    "count": 4349
+   }
+  ]
+ },
+ {
+  "id": "theory",
+  "zh": "优化与理论",
+  "en": "Optimization & Theory",
+  "count": 5913,
+  "tags": [
+   {
+    "id": "optimizers",
+    "zh": "优化器（Muon / Adam / 二阶等）",
+    "en": "Optimizers (Muon, Adam, second-order...)",
+    "count": 942
+   },
+   {
+    "id": "opt_theory",
+    "zh": "优化理论",
+    "en": "Optimization Theory",
+    "count": 2051
+   },
+   {
+    "id": "learning_theory",
+    "zh": "学习理论（泛化 / 样本复杂度）",
+    "en": "Learning Theory (generalization, sample complexity)",
+    "count": 1772
+   },
+   {
+    "id": "dl_theory",
+    "zh": "深度学习理论（NTK / 平均场 / 特征学习）",
+    "en": "Deep Learning Theory (NTK, mean-field, feature learning)",
+    "count": 476
+   },
+   {
+    "id": "transformer_theory",
+    "zh": "Transformer 理论 / 表达能力",
+    "en": "Transformer Theory & Expressivity",
+    "count": 507
+   },
+   {
+    "id": "dynamics",
+    "zh": "训练动力学 / 深度学习科学（Grokking 等）",
+    "en": "Training Dynamics & Science of DL",
+    "count": 722
+   },
+   {
+    "id": "ot",
+    "zh": "最优传输 / 薛定谔桥",
+    "en": "Optimal Transport & Schrödinger Bridges",
+    "count": 620
+   },
+   {
+    "id": "game",
+    "zh": "博弈论 / 机制设计 / 经济学",
+    "en": "Game Theory, Mechanism Design & Economics",
+    "count": 605
+   }
+  ]
+ },
+ {
+  "id": "rep",
+  "zh": "表征学习",
+  "en": "Representation Learning",
+  "count": 3701,
+  "tags": [
+   {
+    "id": "ssl",
+    "zh": "自监督 / 对比学习",
+    "en": "Self-supervised & Contrastive Learning",
+    "count": 1848
+   },
+   {
+    "id": "jepa",
+    "zh": "JEPA / 隐空间预测",
+    "en": "JEPA & Latent Prediction",
+    "count": 489
+   },
+   {
+    "id": "rep_align",
+    "zh": "表征对齐 / 柏拉图表征",
+    "en": "Representation Alignment / Platonic Representations",
+    "count": 316
+   },
+   {
+    "id": "meta",
+    "zh": "元学习 / 小样本",
+    "en": "Meta-learning & Few-shot",
+    "count": 267
+   },
+   {
+    "id": "clustering",
+    "zh": "聚类",
+    "en": "Clustering",
+    "count": 343
+   },
+   {
+    "id": "multimodal_rep",
+    "zh": "多模态表征 / 融合",
+    "en": "Multimodal Representation & Fusion",
+    "count": 921
+   }
+  ]
+ },
+ {
+  "id": "science",
+  "zh": "AI for Science 与应用",
+  "en": "AI for Science & Applications",
+  "count": 10331,
+  "tags": [
+   {
+    "id": "pde",
+    "zh": "PDE / 神经算子 / 物理信息",
+    "en": "PDEs, Neural Operators & Physics-informed ML",
+    "count": 681
+   },
+   {
+    "id": "molecule",
+    "zh": "分子 / 化学 / 材料",
+    "en": "Molecules, Chemistry & Materials",
+    "count": 895
+   },
+   {
+    "id": "bio",
+    "zh": "蛋白质 / 生物 / 基因组 / 单细胞",
+    "en": "Proteins, Biology, Genomics & Single-cell",
+    "count": 948
+   },
+   {
+    "id": "medical",
+    "zh": "医疗健康",
+    "en": "Medicine & Healthcare",
+    "count": 1422
+   },
+   {
+    "id": "neuro",
+    "zh": "神经科学 / 脑解码 / 认知科学",
+    "en": "Neuroscience, Brain Decoding & Cognitive Science",
+    "count": 982
+   },
+   {
+    "id": "earth",
+    "zh": "气象 / 气候 / 遥感",
+    "en": "Weather, Climate & Remote Sensing",
+    "count": 475
+   },
+   {
+    "id": "quantum",
+    "zh": "量子机器学习",
+    "en": "Quantum ML",
+    "count": 192
+   },
+   {
+    "id": "physics",
+    "zh": "物理 / 科学机器学习（其他）",
+    "en": "Physics & Scientific ML (other)",
+    "count": 1220
+   },
+   {
+    "id": "timeseries",
+    "zh": "时间序列",
+    "en": "Time Series",
+    "count": 2079
+   },
+   {
+    "id": "graph",
+    "zh": "图学习 / GNN",
+    "en": "Graph Learning / GNNs",
+    "count": 1315
+   },
+   {
+    "id": "geometric",
+    "zh": "几何深度学习 / 等变性",
+    "en": "Geometric DL & Equivariance",
+    "count": 1105
+   },
+   {
+    "id": "tabular",
+    "zh": "表格数据",
+    "en": "Tabular Data",
+    "count": 557
+   },
+   {
+    "id": "recsys",
+    "zh": "推荐系统",
+    "en": "Recommender Systems",
+    "count": 357
+   },
+   {
+    "id": "combopt",
+    "zh": "组合优化 / 运筹",
+    "en": "Combinatorial Optimization & OR",
+    "count": 422
+   },
+   {
+    "id": "neurosymbolic",
+    "zh": "神经符号 / 形式化验证 / 逻辑推理",
+    "en": "Neurosymbolic, Formal Verification & Logic",
+    "count": 489
+   }
+  ]
+ },
+ {
+  "id": "prob",
+  "zh": "概率与因果",
+  "en": "Probabilistic & Causal",
+  "count": 2701,
+  "tags": [
+   {
+    "id": "causal",
+    "zh": "因果推断 / 因果发现",
+    "en": "Causal Inference & Discovery",
+    "count": 818
+   },
+   {
+    "id": "bayes",
+    "zh": "贝叶斯 / 变分推断 / 采样",
+    "en": "Bayesian, Variational Inference & Sampling",
+    "count": 873
+   },
+   {
+    "id": "bo_automl",
+    "zh": "贝叶斯优化 / 黑盒优化 / AutoML / 进化搜索",
+    "en": "Bayesian Opt., Black-box, AutoML & Evolutionary Search",
+    "count": 768
+   },
+   {
+    "id": "stats",
+    "zh": "统计推断 / 假设检验",
+    "en": "Statistical Inference & Testing",
+    "count": 546
+   }
+  ]
+ },
+ {
+  "id": "data",
+  "zh": "数据与评测",
+  "en": "Data & Evaluation",
+  "count": 6800,
+  "tags": [
+   {
+    "id": "benchmark",
+    "zh": "新 Benchmark / 数据集",
+    "en": "New Benchmarks & Datasets",
+    "count": 4570
+   },
+   {
+    "id": "eval_method",
+    "zh": "评测方法论",
+    "en": "Evaluation Methodology",
+    "count": 1451
+   },
+   {
+    "id": "synthetic",
+    "zh": "合成数据 / 模型坍塌",
+    "en": "Synthetic Data & Model Collapse",
+    "count": 804
+   },
+   {
+    "id": "data_select",
+    "zh": "数据选择 / 数据配比 / 数据集蒸馏",
+    "en": "Data Selection, Mixing & Dataset Distillation",
+    "count": 1088
+   }
+  ]
+ }
+]
