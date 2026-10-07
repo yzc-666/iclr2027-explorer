@@ -79,6 +79,10 @@ main { flex: 1; min-width: 0; }
 .afilter.clear { background: none; border-style: dashed; }
 .afilter.clear::after { content: none; }
 
+#search-hint { font-size: 12.5px; margin-bottom: 6px; }
+#search-hint:empty { display: none; }
+#search-hint .link { margin-left: 6px; }
+
 #tag-suggest { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; font-size: 13px; }
 #tag-suggest:empty { display: none; }
 

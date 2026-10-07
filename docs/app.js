@@ -56,17 +56,26 @@ async function init() {
   window.addEventListener("hashchange", () => { readHash(); update(false); });
 }
 
-function tokenize(q) {
-  const toks = [];
-  for (const m of q.toLowerCase().matchAll(/"([^"]+)"|(\S+)/g)) toks.push((m[1] || m[2]).trim());
-  return toks.filter(Boolean);
+const QUOTES = /[“”„‟「」『』]/g;
+
+// Quoted text is one phrase; an unclosed quote runs to the end so phrases match while being typed.
+function parseQuery(q) {
+  const out = [];
+  for (const m of q.toLowerCase().replace(QUOTES, '"').matchAll(/"([^"]*)(?:"|$)|([^\s"]+)/g)) {
+    const t = (m[1] ?? m[2]).trim().replace(/\s+/g, " ");
+    if (t) out.push({ t, phrase: m[1] !== undefined });
+  }
+  return out;
 }
+const tokenize = (q) => parseQuery(q).map((x) => x.t);
 
 const CJK = /[\u3400-\u9fff\uf900-\ufaff]/;
 // Latin tokens must start at a word boundary ("rl" must not match "world", "rsi" not "adversarial");
-// CJK text has no word boundaries, so CJK tokens match anywhere.
-const tokenSource = (t) => (CJK.test(t[0]) ? "" : "(?<![a-z0-9])") + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+// CJK text has no word boundaries, so CJK tokens match anywhere. Spaces and hyphens are interchangeable.
+const tokenSource = (t) => (CJK.test(t[0]) ? "" : "(?<![a-z0-9])") +
+  t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/[\s-]+/g, "[\\s-]+");
 const matchers = (q) => tokenize(q).map((t) => new RegExp(tokenSource(t), "i"));
+const looseWords = (q) => parseQuery(q).filter((x) => !x.phrase).map((x) => x.t);
 
 function baseFilter() {
   const ms = matchers(state.q);
@@ -89,7 +98,10 @@ function sortResults() {
   const ms = matchers(state.q);
   const byNum = (a, b) => a.status - b.status || a.num - b.num;
   if (state.sort === "rel" && ms.length) {
-    const score = (p) => ms.reduce((s, m) => s + (m.test(p.title) ? 2 : 1), 0);
+    const loose = looseWords(state.q);
+    const whole = loose.length > 1 ? new RegExp(tokenSource(loose.join(" ")), "i") : null;
+    const score = (p) => ms.reduce((s, m) => s + (m.test(p.title) ? 2 : 1), 0) +
+      (whole ? (whole.test(p.title) ? 10 : whole.test(p.hay) ? 5 : 0) : 0);
     for (const p of results) p._s = score(p);
     results.sort((a, b) => b._s - a._s || byNum(a, b));
   } else if (state.sort === "num_desc") {
@@ -156,6 +168,14 @@ function renderActiveFilters() {
   if (state.area !== "") items.push(`<button class="afilter" data-rm="area">${esc(META.areas[Number(state.area)])}</button>`);
   if (items.length > 1) items.push(`<button class="afilter clear" data-rm="all">清除全部</button>`);
   $("#active-filters").innerHTML = items.join("");
+
+  const parts = parseQuery(state.q);
+  const loose = parts.filter((x) => !x.phrase).map((x) => x.t);
+  const phrases = parts.filter((x) => x.phrase).map((x) => `“${esc(x.t)}”`);
+  $("#search-hint").innerHTML = loose.length > 1
+    ? `按 ${loose.length} 个词分别匹配（需同时出现，顺序不限；按相关度排序时完整包含词组的排在前面）。` +
+      `<button class="link" data-phrase>改为整体词组搜索 “${esc(loose.join(" "))}”</button>`
+    : phrases.length ? `词组匹配：${phrases.join("、")}（空格与连字符视为相同）` : "";
 
   const ms = matchers(state.q);
   const matches = ms.length
@@ -305,6 +325,12 @@ function setupControls() {
       if (t) toggleTag(Number(t.dataset.tag));
     });
   }
+  $("#search-hint").addEventListener("click", (e) => {
+    if (!e.target.closest("[data-phrase]")) return;
+    state.q = `"${state.q.replace(QUOTES, "").replace(/"/g, "").trim()}"`;
+    $("#q").value = state.q;
+    update();
+  });
   $("#tag-suggest").addEventListener("click", (e) => {
     const b = e.target.closest("[data-suggest]");
     if (!b) return;

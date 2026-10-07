@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ICLR 2027 投稿分类浏览</title>
-  <link rel="stylesheet" href="style.css?v=bd9bfe82d5">
+  <link rel="stylesheet" href="style.css?v=9b4191a0b8">
 </head>
 <body>
   <header class="topbar">
@@ -13,7 +13,7 @@
       <div id="stats" class="muted">加载数据中…</div>
     </div>
     <div class="searchbox">
-      <input id="q" type="search" placeholder='搜索标题 / 关键词 / 中文标签名，空格分隔为 AND，可用引号："on-policy distillation"' autocomplete="off">
+      <input id="q" type="search" placeholder='搜索标题 / 关键词 / 中文标签名；多个词需同时出现，加引号搜整个词组："on-policy distillation"（中文引号也可）' autocomplete="off">
     </div>
   </header>
 
@@ -48,6 +48,7 @@
 
     <main>
       <div id="active-filters"></div>
+      <div id="search-hint" class="muted"></div>
       <div id="tag-suggest"></div>
       <div class="toolbar">
         <span id="count"></span>
@@ -74,6 +75,6 @@
     规则见 <a href="https://github.com/yzc-666/iclr2027-explorer/blob/HEAD/scripts/taxonomy.py" target="_blank" rel="noopener">scripts/taxonomy.py</a>。
   </footer>
 
-  <script src="app.js?v=b0d65324f2"></script>
+  <script src="app.js?v=73c67d91cd"></script>
 </body>
 </html>
